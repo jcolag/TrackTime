@@ -1,0 +1,29 @@
+﻿<Window x:Class="Track_Time.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:self="clr-namespace:Track_Time"
+        Title="Track Time" Height="350" Width="525">
+    <Window.CommandBindings>
+        <CommandBinding Command="self:LocalCommands.Pause" Executed="Pause_Executed" CanExecute="Always_CanExecute" />
+        <CommandBinding Command="self:LocalCommands.Clear" Executed="Clear_Executed" CanExecute="Always_CanExecute" />
+        <CommandBinding Command="self:LocalCommands.Save" Executed="Save_Executed" CanExecute="Always_CanExecute" />
+        <CommandBinding Command="self:LocalCommands.Exit" Executed="Exit_Executed" CanExecute="Always_CanExecute" />
+    </Window.CommandBindings>
+    <Grid>
+        <DockPanel x:Name="MainDock">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem x:Name="MenuFile" Header="File">
+                    <MenuItem x:Name="MenuFileClear" Command="self:LocalCommands.Clear" />
+                    <MenuItem x:Name="MenuFileSave" Command="self:LocalCommands.Save" />
+                    <MenuItem x:Name="MenuFileExit" Command="self:LocalCommands.Exit" />
+                </MenuItem>
+            </Menu>
+            <DockPanel x:Name="BottomDock" DockPanel.Dock="Bottom" LastChildFill="False">
+                <Label Content="Interval" DockPanel.Dock="Left" />
+                <TextBox x:Name="textInterval" Text="0" DockPanel.Dock="Left" TextChanged="textInterval_TextChanged" />
+                <ToggleButton x:Name="btnPause" DockPanel.Dock="Right" Content="Pause" Command="self:LocalCommands.Pause" IsEnabled="True" IsChecked="False" />
+            </DockPanel>
+            <TextBox x:Name="WindowLog" HorizontalAlignment="Left" Height="258" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="497"/>
+        </DockPanel>
+    </Grid>
+</Window>
