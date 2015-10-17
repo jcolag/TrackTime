@@ -9,3 +9,5 @@ It's not a very sophisticated application and probably could use a lot of work, 
 There isn't much to the interface.  Updates (window title and duration) are appended to the text in the window.  The time between checks can be configured.  The monitoring can be paused.  From the menu, the log can be saved or cleared.  That's about it.
 
 Perhaps the most interesting thing about the code is that, while the code is completely in C#, the critical features aren't exposed to the .NET framework and are the same Windows API calls I needed to make back in the 1990s.
+
+Note that, while I can probably be convinced to fiddle with it further if people are using it, I am not really planning to maintain this at the moment.  It was a prototype to show that the basic idea works.
