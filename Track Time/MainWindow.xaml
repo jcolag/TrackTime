@@ -23,7 +23,9 @@
                 <TextBox x:Name="textInterval" Text="0" DockPanel.Dock="Left" TextChanged="textInterval_TextChanged" />
                 <ToggleButton x:Name="btnPause" DockPanel.Dock="Right" Content="Pause" Command="self:LocalCommands.Pause" IsEnabled="True" IsChecked="False" />
             </DockPanel>
-            <TextBox x:Name="WindowLog" HorizontalAlignment="Left" Height="258" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="497"/>
+            <ScrollViewer x:Name="TextScroll" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Stretch">
+                <TextBox x:Name="WindowLog" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" />
+            </ScrollViewer>
         </DockPanel>
     </Grid>
 </Window>
