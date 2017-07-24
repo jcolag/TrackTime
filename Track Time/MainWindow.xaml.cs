@@ -20,12 +20,17 @@ namespace Track_Time
             public uint dwTime;
         }
 
+        delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
+
         private String lastWindow = String.Empty;
         private DateTime since = new DateTime();
         private uint interval = 5;
         private uint minIdle = 300;
         private DispatcherTimer clock = null;
         private bool isDirty = false;
+        WinEventDelegate windowChanged = null;
+        private const uint WINEVENT_OUTOFCONTEXT = 0;
+        private const uint EVENT_SYSTEM_FOREGROUND = 3;
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -35,6 +40,9 @@ namespace Track_Time
 
         [DllImport("User32.dll")]
         private static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
+
+        [DllImport("user32.dll")]
+        static extern IntPtr SetWinEventHook(uint eventMin, uint eventMax, IntPtr hmodWinEventProc, WinEventDelegate lpfnWinEventProc, uint idProcess, uint idThread, uint dwFlags);
 
         [DllImport("Kernel32.dll")]
         private static extern UInt32 GetTickCount();
