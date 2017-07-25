@@ -102,6 +102,11 @@ namespace Track_Time
             return title;
         }
 
+        public void WindowFocusChanged(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
+        {
+            clock_Tick(null, new EventArgs());
+        }
+
         private uint GetIdleTime()
         {
             /*
