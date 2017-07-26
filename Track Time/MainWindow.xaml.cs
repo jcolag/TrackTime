@@ -56,6 +56,15 @@ namespace Track_Time
             clock.Start();
             since = DateTime.Now;
             textInterval.Text = interval.ToString();
+            this.windowChanged = new WinEventDelegate(WindowFocusChanged);
+            IntPtr m_hhook = SetWinEventHook(
+                EVENT_SYSTEM_FOREGROUND,
+                EVENT_SYSTEM_FOREGROUND,
+                IntPtr.Zero,
+                this.windowChanged,
+                0,
+                0,
+                WINEVENT_OUTOFCONTEXT);
         }
 
         void clock_Tick(object sender, EventArgs e)
