@@ -69,7 +69,8 @@ namespace Track_Time
 
         void clock_Tick(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(lastWindow))
+            String title = FindCurrentWindow();
+            if (title == this.lastWindow)
             {
                 return;
             }
