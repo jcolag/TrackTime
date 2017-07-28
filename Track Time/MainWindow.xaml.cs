@@ -28,6 +28,7 @@ namespace Track_Time
         private uint minIdle = 300;
         private DispatcherTimer clock = null;
         private bool isDirty = false;
+        private readonly double EPSILON = 0.01;
         WinEventDelegate windowChanged = null;
         private const uint WINEVENT_OUTOFCONTEXT = 0;
         private const uint EVENT_SYSTEM_FOREGROUND = 3;
@@ -77,6 +78,9 @@ namespace Track_Time
 
             String title = FindCurrentWindow();
             if (title == lastWindow)
+            bool isAtBottom = false;
+
+            if (Math.Abs(TextScroll.VerticalOffset - TextScroll.ScrollableHeight) < this.EPSILON)
             {
                 return;
             }
@@ -96,6 +100,11 @@ namespace Track_Time
             }
 
             isDirty = true;
+            if (isAtBottom)
+            {
+                TextScroll.ScrollToEnd();
+            }
+
         }
 
         private String FindCurrentWindow()
