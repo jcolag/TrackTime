@@ -19,9 +19,9 @@
                 </MenuItem>
             </Menu>
             <DockPanel x:Name="BottomDock" DockPanel.Dock="Bottom" LastChildFill="False">
-                <Label Content="Interval" DockPanel.Dock="Left" />
-                <TextBox x:Name="textInterval" Text="0" DockPanel.Dock="Left" TextChanged="textInterval_TextChanged" />
-                <ToggleButton x:Name="btnPause" DockPanel.Dock="Right" Content="Pause" Command="self:LocalCommands.Pause" IsEnabled="True" IsChecked="False" />
+                <Label Content="Polling Interval" DockPanel.Dock="Left" />
+                <TextBox x:Name="textInterval" Text="0" DockPanel.Dock="Left" TextChanged="textInterval_TextChanged" VerticalAlignment="Center" />
+                <ToggleButton x:Name="btnPause" DockPanel.Dock="Right" Content="Pause" Command="self:LocalCommands.Pause" IsEnabled="True" IsChecked="False" Margin="0,0,5,0" />
             </DockPanel>
             <ScrollViewer x:Name="TextScroll" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Stretch">
                 <TextBox x:Name="WindowLog" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" />
