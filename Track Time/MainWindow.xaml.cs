@@ -29,6 +29,7 @@ namespace Track_Time
         private DispatcherTimer clock = null;
         private bool isDirty = false;
         private readonly double EPSILON = 0.01;
+        private uint logLength = 0;
         WinEventDelegate windowChanged = null;
         private const uint WINEVENT_OUTOFCONTEXT = 0;
         private const uint EVENT_SYSTEM_FOREGROUND = 3;
@@ -91,6 +92,8 @@ namespace Track_Time
             WindowLog.Text += log;
             since = now;
             lastWindow = title;
+            this.logLength += 1;
+            textLogLength.Text = this.logLength.ToString();
 
             uint idle = GetIdleTime();
             if (idle > minIdle)
