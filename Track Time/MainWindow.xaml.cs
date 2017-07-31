@@ -77,13 +77,10 @@ namespace Track_Time
                 return;
             }
 
-            String title = FindCurrentWindow();
-            if (title == lastWindow)
             bool isAtBottom = false;
 
             if (Math.Abs(TextScroll.VerticalOffset - TextScroll.ScrollableHeight) < this.EPSILON)
             {
-                return;
             }
 
             DateTime now = DateTime.Now;
