@@ -77,15 +77,15 @@ namespace Track_Time
                 return;
             }
 
+            DateTime now = DateTime.Now;
+            TimeSpan duration = now - this.since;
+            String log = now.ToString("u") + "," + this.lastWindow + "," + duration.ToString() + "\n";
             bool isAtBottom = false;
 
             if (Math.Abs(TextScroll.VerticalOffset - TextScroll.ScrollableHeight) < this.EPSILON)
             {
             }
 
-            DateTime now = DateTime.Now;
-            TimeSpan duration = now - since;
-            String log = lastWindow + "," + duration.ToString() + "\n";
             WindowLog.Text += log;
             since = now;
             lastWindow = title;
