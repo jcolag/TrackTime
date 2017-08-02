@@ -84,6 +84,7 @@ namespace Track_Time
 
             if (Math.Abs(TextScroll.VerticalOffset - TextScroll.ScrollableHeight) < this.EPSILON)
             {
+                isAtBottom = true;
             }
 
             WindowLog.Text += log;
