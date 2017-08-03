@@ -52,12 +52,6 @@ namespace Track_Time
         public MainWindow()
         {
             InitializeComponent();
-            clock = new DispatcherTimer();
-            clock.Interval = new System.TimeSpan(0, 0, (int)interval);
-            clock.Tick += clock_Tick;
-            clock.Start();
-            since = DateTime.Now;
-            textInterval.Text = interval.ToString();
             this.windowChanged = new WinEventDelegate(WindowFocusChanged);
             IntPtr m_hhook = SetWinEventHook(
                 EVENT_SYSTEM_FOREGROUND,
@@ -67,6 +61,12 @@ namespace Track_Time
                 0,
                 0,
                 WINEVENT_OUTOFCONTEXT);
+            this.clock = new DispatcherTimer();
+            this.clock.Interval = new TimeSpan(0, 0, (int)this.interval);
+            this.clock.Tick += clock_Tick;
+            this.clock.Start();
+            this.since = DateTime.Now;
+            textInterval.Text = this.interval.ToString();
         }
 
         void clock_Tick(object sender, EventArgs e)
@@ -88,24 +88,24 @@ namespace Track_Time
             }
 
             WindowLog.Text += log;
-            since = now;
-            lastWindow = title;
             this.logLength += 1;
             textLogLength.Text = this.logLength.ToString();
+            this.since = now;
+            this.lastWindow = title;
 
             uint idle = GetIdleTime();
-            if (idle > minIdle)
+            if (idle > this.minIdle)
             {
                 TimeSpan idleTime = new TimeSpan(0, 0, (int)idle);
                 log = "Also idle for approximately " + idleTime.ToString() + "\n";
             }
 
-            isDirty = true;
             if (isAtBottom)
             {
                 TextScroll.ScrollToEnd();
             }
 
+            this.isDirty = true;
         }
 
         private String FindCurrentWindow()
@@ -150,16 +150,16 @@ namespace Track_Time
 
         private void Pause_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (clock.IsEnabled)
+            if (this.clock.IsEnabled)
             {
                 clock_Tick(sender, new EventArgs());
-                clock.Stop();
-                lastWindow = "* Paused *";
+                this.clock.Stop();
+                this.lastWindow = "* Paused *";
                 System.Console.WriteLine("Pause");
             }
             else
             {
-                clock.Start();
+                this.clock.Start();
                 System.Console.WriteLine("Unpause");
             }
         }
@@ -181,8 +181,8 @@ namespace Track_Time
             Int16 newInterval = Int16.Parse(possibleInterval);
             if (newInterval > 0)
             {
-                clock.Interval = new TimeSpan(0, 0, newInterval);
-                interval = (uint)newInterval;
+                this.clock.Interval = new TimeSpan(0, 0, newInterval);
+                this.interval = (uint)newInterval;
             }
         }
 
@@ -206,12 +206,12 @@ namespace Track_Time
             outfile.Write(contents.Replace("\n", outfile.NewLine));
             outfile.Flush();
             outfile.Close();
-            isDirty = false;
+            this.isDirty = false;
         }
 
         private void Exit_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (isDirty)
+            if (this.isDirty)
             {
                 MessageBoxResult answer = MessageBox.Show("There are unsaved changes.  Exit anyway?",
                     "Exiting...", MessageBoxButton.YesNo, MessageBoxImage.Warning,
