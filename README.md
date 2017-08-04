@@ -10,4 +10,4 @@ There isn't much to the interface.  Updates (window title and duration) are appe
 
 Perhaps the most interesting thing about the code is that, while the code is completely in C#, the critical features aren't exposed to the .NET framework and are the same Windows API calls I needed to make back in the 1990s.
 
-Note that, while I can probably be convinced to fiddle with it further if people are using it, I am not really planning to maintain this at the moment.  It was a prototype to show that the basic idea works.
+(Note that, while I can probably be convinced to fiddle with it further if people are using it, I am not really planning to regularly maintain this at the moment.  It was a prototype to show that the basic idea works.  Though its occasional use can obviously be compelling, especially with some additional processing...)
