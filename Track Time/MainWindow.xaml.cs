@@ -226,3 +226,6 @@ namespace Track_Time
         }
     }
 }
+			DateTime now = DateTime.Now;
+			String today = String.Format("{0}-{1}-{2}.csv", now.Year, now.Month, now.Day);
+			sfd.FileName = today;
