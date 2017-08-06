@@ -193,7 +193,10 @@ namespace Track_Time
 
         private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
+			DateTime now = DateTime.Now;
+			String today = String.Format("{0}-{1}-{2}.csv", now.Year, now.Month, now.Day);
+			SaveFileDialog sfd = new SaveFileDialog();
+			sfd.FileName = today;
             sfd.ShowDialog();
             String filename = sfd.FileName;
             if (String.IsNullOrWhiteSpace(filename))
@@ -226,6 +229,3 @@ namespace Track_Time
         }
     }
 }
-			DateTime now = DateTime.Now;
-			String today = String.Format("{0}-{1}-{2}.csv", now.Year, now.Month, now.Day);
-			sfd.FileName = today;
