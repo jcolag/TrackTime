@@ -1,14 +1,14 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Threading;
-
 namespace Track_Time
 {
+    using System;
+    using System.Runtime.InteropServices;
+    using System.Text;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+    using System.Windows.Threading;
+    using Microsoft.Win32;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
