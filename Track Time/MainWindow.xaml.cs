@@ -19,35 +19,35 @@ namespace Track_Time
             public uint cbSize;
             public uint dwTime;
         }
+        private const uint WINEVENT_OUTOFCONTEXT = 0;
 
         delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
+        private const uint EVENT_SYSTEM_FOREGROUND = 3;
 
         private String lastWindow = String.Empty;
+        private readonly double epsilon = 0.01;
         private DateTime since = new DateTime();
         private uint interval = 5;
-        private uint minIdle = 300;
-        private DispatcherTimer clock = null;
-        private bool isDirty = false;
-        private readonly double EPSILON = 0.01;
-        private uint logLength = 0;
-        WinEventDelegate windowChanged = null;
-        private const uint WINEVENT_OUTOFCONTEXT = 0;
-        private const uint EVENT_SYSTEM_FOREGROUND = 3;
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
+        private uint minIdle = 300;
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+        private DispatcherTimer clock = null;
 
         [DllImport("User32.dll")]
         private static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
+        private bool isDirty = false;
 
         [DllImport("user32.dll")]
         static extern IntPtr SetWinEventHook(uint eventMin, uint eventMax, IntPtr hmodWinEventProc, WinEventDelegate lpfnWinEventProc, uint idProcess, uint idThread, uint dwFlags);
+        private uint logLength = 0;
 
         [DllImport("Kernel32.dll")]
         private static extern UInt32 GetTickCount();
+        private WinEventDelegate windowChanged = null;
 
         public MainWindow()
         {
