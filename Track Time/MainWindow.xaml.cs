@@ -14,11 +14,6 @@ namespace Track_Time
     /// </summary>
     public partial class MainWindow : Window
     {
-        internal struct LASTINPUTINFO
-        {
-            public uint cbSize;
-            public uint dwTime;
-        }
         private const uint WINEVENT_OUTOFCONTEXT = 0;
 
         delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
@@ -227,5 +222,10 @@ namespace Track_Time
 
             Application.Current.Shutdown();
         }
+        internal struct LASTINPUTINFO
+        {
+            public uint cbSize;
+            public uint dwTime;
+        }
     }
-}
+}
