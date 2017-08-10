@@ -77,7 +77,7 @@ namespace Track_Time
             String log = now.ToString("u") + "," + this.lastWindow + "," + duration.ToString() + "\n";
             bool isAtBottom = false;
 
-            if (Math.Abs(TextScroll.VerticalOffset - TextScroll.ScrollableHeight) < this.EPSILON)
+            if (Math.Abs(TextScroll.VerticalOffset - TextScroll.ScrollableHeight) < this.epsilon)
             {
                 isAtBottom = true;
             }
