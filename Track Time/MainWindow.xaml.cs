@@ -16,7 +16,6 @@ namespace Track_Time
     {
         private const uint WINEVENT_OUTOFCONTEXT = 0;
 
-        delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
         private const uint EVENT_SYSTEM_FOREGROUND = 3;
 
         private String lastWindow = String.Empty;
@@ -24,24 +23,14 @@ namespace Track_Time
         private DateTime since = new DateTime();
         private uint interval = 5;
 
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetForegroundWindow();
         private uint minIdle = 300;
 
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
         private DispatcherTimer clock = null;
 
-        [DllImport("User32.dll")]
-        private static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
         private bool isDirty = false;
 
-        [DllImport("user32.dll")]
-        static extern IntPtr SetWinEventHook(uint eventMin, uint eventMax, IntPtr hmodWinEventProc, WinEventDelegate lpfnWinEventProc, uint idProcess, uint idThread, uint dwFlags);
         private uint logLength = 0;
 
-        [DllImport("Kernel32.dll")]
-        private static extern UInt32 GetTickCount();
         private WinEventDelegate windowChanged = null;
 
         public MainWindow()
@@ -65,6 +54,22 @@ namespace Track_Time
         }
 
         void clock_Tick(object sender, EventArgs e)
+        private delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+
+        [DllImport("User32.dll")]
+        private static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr SetWinEventHook(uint eventMin, uint eventMax, IntPtr hmodWinEventProc, WinEventDelegate lpfnWinEventProc, uint idProcess, uint idThread, uint dwFlags);
+
+        [DllImport("Kernel32.dll")]
+        private static extern UInt32 GetTickCount();
+
         {
             String title = FindCurrentWindow();
             if (title == this.lastWindow)
