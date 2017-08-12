@@ -18,8 +18,8 @@ namespace Track_Time
 
         private const uint EVENT_SYSTEM_FOREGROUND = 3;
 
-        private String lastWindow = String.Empty;
         private readonly double epsilon = 0.01;
+        private string lastWindow = string.Empty;
         private DateTime since = new DateTime();
         private uint interval = 5;
 
