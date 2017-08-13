@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
 namespace Track_Time
 {
     class LocalCommands
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
+
     {
         public static readonly RoutedUICommand Pause
             = new RoutedUICommand(
@@ -37,4 +37,4 @@ namespace Track_Time
                 typeof(LocalCommands)
                 );
     }
-}
+}
