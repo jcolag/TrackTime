@@ -1,3 +1,8 @@
+﻿//-----------------------------------------------------------------------
+// <copyright file="MainWindow.xaml.cs" company="Colagioia Industries">
+//     Copyright (c) John Colagioia, available under the GPLv3.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace Track_Time
 {
     using System;

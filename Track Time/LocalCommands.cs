@@ -1,3 +1,8 @@
+﻿//-----------------------------------------------------------------------
+// <copyright file="LocalCommands.cs" company="Colagioia Industries">
+//     Copyright (c) John Colagioia, available under the GPLv3.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace Track_Time
 {
     class LocalCommands
