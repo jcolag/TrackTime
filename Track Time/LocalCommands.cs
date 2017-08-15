@@ -5,7 +5,6 @@
 //-----------------------------------------------------------------------
 namespace Track_Time
 {
-    class LocalCommands
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -13,7 +12,14 @@ namespace Track_Time
     using System.Threading.Tasks;
     using System.Windows.Input;
 
+    /// <summary>
+    /// Local commands for the application.
+    /// </summary>
+    public class LocalCommands
     {
+        /// <summary>
+        /// The pause button's command.
+        /// </summary>
         public static readonly RoutedUICommand Pause
             = new RoutedUICommand(
                 "Pause",
@@ -21,6 +27,9 @@ namespace Track_Time
                 typeof(LocalCommands)
                 );
 
+        /// <summary>
+        /// The clear-log command.
+        /// </summary>
         public static readonly RoutedUICommand Clear
             = new RoutedUICommand(
                 "Clear",
@@ -28,6 +37,9 @@ namespace Track_Time
                 typeof(LocalCommands)
                 );
 
+        /// <summary>
+        /// The save file command.
+        /// </summary>
         public static readonly RoutedUICommand Save
             = new RoutedUICommand(
                 "Save...",
@@ -35,6 +47,9 @@ namespace Track_Time
                 typeof(LocalCommands)
                 );
 
+        /// <summary>
+        /// The exit-program command.
+        /// </summary>
         public static readonly RoutedUICommand Exit
             = new RoutedUICommand(
                 "Exit",
