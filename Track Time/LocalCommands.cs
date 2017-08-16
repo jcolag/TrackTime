@@ -24,8 +24,7 @@ namespace Track_Time
             = new RoutedUICommand(
                 "Pause",
                 "Pause",
-                typeof(LocalCommands)
-                );
+                typeof(LocalCommands));
 
         /// <summary>
         /// The clear-log command.
@@ -34,8 +33,7 @@ namespace Track_Time
             = new RoutedUICommand(
                 "Clear",
                 "Clear",
-                typeof(LocalCommands)
-                );
+                typeof(LocalCommands));
 
         /// <summary>
         /// The save file command.
@@ -44,8 +42,7 @@ namespace Track_Time
             = new RoutedUICommand(
                 "Save...",
                 "Save",
-                typeof(LocalCommands)
-                );
+                typeof(LocalCommands));
 
         /// <summary>
         /// The exit-program command.
@@ -54,7 +51,6 @@ namespace Track_Time
             = new RoutedUICommand(
                 "Exit",
                 "Exit",
-                typeof(LocalCommands)
-                );
+                typeof(LocalCommands));
     }
-}
+}
