@@ -52,7 +52,7 @@ namespace Track_Time
                 WINEVENT_OUTOFCONTEXT);
             this.clock = new DispatcherTimer();
             this.clock.Interval = new TimeSpan(0, 0, (int)this.interval);
-            this.clock.Tick += clock_Tick;
+            this.clock.Tick += this.clock_Tick;
             this.clock.Start();
             this.since = DateTime.Now;
             textInterval.Text = this.interval.ToString();
@@ -75,8 +75,14 @@ namespace Track_Time
         [DllImport("Kernel32.dll")]
         private static extern UInt32 GetTickCount();
 
+        /// <summary>
+        /// Event handler for clock ticks and related work.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The event arguments</param>
+        private void clock_Tick(object sender, EventArgs e)
         {
-            String title = FindCurrentWindow();
+            string title = this.FindCurrentWindow();
             if (title == this.lastWindow)
             {
                 return;
