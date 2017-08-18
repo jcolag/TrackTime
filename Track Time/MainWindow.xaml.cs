@@ -58,7 +58,6 @@ namespace Track_Time
             textInterval.Text = this.interval.ToString();
         }
 
-        void clock_Tick(object sender, EventArgs e)
         private delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
