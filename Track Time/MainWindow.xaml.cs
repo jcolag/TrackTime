@@ -19,25 +19,64 @@ namespace Track_Time
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Out of context window events.
+        /// </summary>
         private const uint WINEVENT_OUTOFCONTEXT = 0;
 
+        /// <summary>
+        /// The foreground-window-changed event.
+        /// </summary>
         private const uint EVENT_SYSTEM_FOREGROUND = 3;
 
+        /// <summary>
+        /// The epsilon value for height comparisons.
+        /// </summary>
         private readonly double epsilon = 0.01;
+
+        /// <summary>
+        /// The last foreground window detected.
+        /// </summary>
         private string lastWindow = string.Empty;
+
+        /// <summary>
+        /// The time since the last event.
+        /// </summary>
         private DateTime since = new DateTime();
+
+        /// <summary>
+        /// The title-checking interval.
+        /// </summary>
         private uint interval = 5;
 
+        /// <summary>
+        /// The minimum idle duration in "ticks."
+        /// </summary>
         private uint minIdle = 300;
 
+        /// <summary>
+        /// The application clock.
+        /// </summary>
         private DispatcherTimer clock = null;
 
+        /// <summary>
+        /// The flag tracking whether the log has been saved.
+        /// </summary>
         private bool isDirty = false;
 
+        /// <summary>
+        /// The length of the log.
+        /// </summary>
         private uint logLength = 0;
 
+        /// <summary>
+        /// The window changed delegate.
+        /// </summary>
         private WinEventDelegate windowChanged = null;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Track_Time.MainWindow"/> class.
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -58,6 +97,9 @@ namespace Track_Time
             textInterval.Text = this.interval.ToString();
         }
 
+        /// <summary>
+        /// Window event delegate.
+        /// </summary>
         private delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -118,7 +160,11 @@ namespace Track_Time
             this.isDirty = true;
         }
 
-        private String FindCurrentWindow()
+        /// <summary>
+        /// Finds the current window title.
+        /// </summary>
+        /// <returns>The current window title.</returns>
+        private string FindCurrentWindow()
         {
             const int count = 512;
             var text = new StringBuilder(count);
@@ -132,11 +178,25 @@ namespace Track_Time
             return title;
         }
 
+        /// <summary>
+        /// Handler for window-focus changes.
+        /// </summary>
+        /// <param name="hWinEventHook">The window event hook.</param>
+        /// <param name="eventType">The event type.</param>
+        /// <param name="hwnd">The window handle.</param>
+        /// <param name="idObject">The object's identifier.</param>
+        /// <param name="idChild">The identifier of the child object.</param>
+        /// <param name="dwEventThread">The event thread's identifier.</param>
+        /// <param name="dwmsEventTime">The event time (in milliseconds).</param>
         public void WindowFocusChanged(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
         {
             clock_Tick(null, new EventArgs());
         }
 
+        /// <summary>
+        /// Gets the idle time.
+        /// </summary>
+        /// <returns>The idle time (in "ticks").</returns>
         private uint GetIdleTime()
         {
             /*
@@ -158,6 +218,11 @@ namespace Track_Time
             return idleticks;
         }
 
+        /// <summary>
+        /// Pauses the logging.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The event arguments.</param>
         private void Pause_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (this.clock.IsEnabled)
@@ -174,11 +239,21 @@ namespace Track_Time
             }
         }
 
+        /// <summary>
+        /// Handler to ensure methods are available.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The event arguments.</param>
         private void Always_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
         }
 
+        /// <summary>
+        /// Handler for when the interval text changes.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The event arguments.</param>
         private void textInterval_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox box = sender as TextBox;
@@ -196,11 +271,21 @@ namespace Track_Time
             }
         }
 
+        /// <summary>
+        /// Clears the log.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The event arguments.</param>
         private void Clear_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             WindowLog.Clear();
         }
 
+        /// <summary>
+        /// Saves the log.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The event arguments.</param>
         private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
         {
 			DateTime now = DateTime.Now;
@@ -222,6 +307,11 @@ namespace Track_Time
             this.isDirty = false;
         }
 
+        /// <summary>
+        /// Exits the program.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The event arguments.</param>
         private void Exit_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (this.isDirty)
@@ -237,6 +327,10 @@ namespace Track_Time
 
             Application.Current.Shutdown();
         }
+
+        /// <summary>
+        /// Time of the last input event, as defined in User32.dll.
+        /// </summary>
         internal struct LASTINPUTINFO
         {
             public uint cbSize;
