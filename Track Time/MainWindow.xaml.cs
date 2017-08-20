@@ -79,8 +79,8 @@ namespace Track_Time
         /// </summary>
         public MainWindow()
         {
-            InitializeComponent();
-            this.windowChanged = new WinEventDelegate(WindowFocusChanged);
+            this.InitializeComponent();
+            this.windowChanged = new WinEventDelegate(this.WindowFocusChanged);
             IntPtr m_hhook = SetWinEventHook(
                 EVENT_SYSTEM_FOREGROUND,
                 EVENT_SYSTEM_FOREGROUND,
@@ -101,6 +101,7 @@ namespace Track_Time
         /// Window event delegate.
         /// </summary>
         private delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
+
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
 
@@ -131,7 +132,7 @@ namespace Track_Time
 
             DateTime now = DateTime.Now;
             TimeSpan duration = now - this.since;
-            String log = now.ToString("u") + "," + this.lastWindow + "," + duration.ToString() + "\n";
+            string log = now.ToString("u") + "," + this.lastWindow + "," + duration.ToString() + "\n";
             bool isAtBottom = false;
 
             if (Math.Abs(TextScroll.VerticalOffset - TextScroll.ScrollableHeight) < this.epsilon)
@@ -166,11 +167,11 @@ namespace Track_Time
         /// <returns>The current window title.</returns>
         private string FindCurrentWindow()
         {
-            const int count = 512;
-            var text = new StringBuilder(count);
+            const int Count = 512;
+            var text = new StringBuilder(Count);
             IntPtr handle = GetForegroundWindow();
-            String title = String.Empty;
-            if (GetWindowText(handle, text, count) > 0)
+            string title = string.Empty;
+            if (GetWindowText(handle, text, Count) > 0)
             {
                 title = text.ToString();
             }
@@ -262,7 +263,7 @@ namespace Track_Time
                 return;
             }
 
-            String possibleInterval = box.Text;
+            string possibleInterval = box.Text;
             Int16 newInterval = Int16.Parse(possibleInterval);
             if (newInterval > 0)
             {
@@ -288,19 +289,19 @@ namespace Track_Time
         /// <param name="e">The event arguments.</param>
         private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-			DateTime now = DateTime.Now;
-			String today = String.Format("{0}-{1}-{2}.csv", now.Year, now.Month, now.Day);
-			SaveFileDialog sfd = new SaveFileDialog();
-			sfd.FileName = today;
+            DateTime now = DateTime.Now;
+            string today = string.Format("{0}-{1}-{2}.csv", now.Year, now.Month, now.Day);
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = today;
             sfd.ShowDialog();
-            String filename = sfd.FileName;
-            if (String.IsNullOrWhiteSpace(filename))
+            string filename = sfd.FileName;
+            if (string.IsNullOrWhiteSpace(filename))
             {
                 return;
             }
 
             System.IO.StreamWriter outfile = System.IO.File.CreateText(filename);
-            String contents = WindowLog.Text;
+            string contents = WindowLog.Text;
             outfile.Write(contents.Replace("\n", outfile.NewLine));
             outfile.Flush();
             outfile.Close();
