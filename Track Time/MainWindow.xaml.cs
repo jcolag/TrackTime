@@ -146,7 +146,7 @@ namespace Track_Time
             this.since = now;
             this.lastWindow = title;
 
-            uint idle = GetIdleTime();
+            uint idle = this.GetIdleTime();
             if (idle > this.minIdle)
             {
                 TimeSpan idleTime = new TimeSpan(0, 0, (int)idle);
@@ -191,7 +191,7 @@ namespace Track_Time
         /// <param name="dwmsEventTime">The event time (in milliseconds).</param>
         public void WindowFocusChanged(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
         {
-            clock_Tick(null, new EventArgs());
+            this.clock_Tick(null, new EventArgs());
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace Track_Time
         {
             if (this.clock.IsEnabled)
             {
-                clock_Tick(sender, new EventArgs());
+                this.clock_Tick(sender, new EventArgs());
                 this.clock.Stop();
                 this.lastWindow = "* Paused *";
                 System.Console.WriteLine("Pause");
