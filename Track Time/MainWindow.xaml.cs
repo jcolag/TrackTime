@@ -317,8 +317,11 @@ namespace Track_Time
         {
             if (this.isDirty)
             {
-                MessageBoxResult answer = MessageBox.Show("There are unsaved changes.  Exit anyway?",
-                    "Exiting...", MessageBoxButton.YesNo, MessageBoxImage.Warning,
+                MessageBoxResult answer = MessageBox.Show(
+                    "There are unsaved changes.  Exit anyway?",
+                    "Exiting...",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning,
                     MessageBoxResult.No);
                 if (answer == MessageBoxResult.No)
                 {
