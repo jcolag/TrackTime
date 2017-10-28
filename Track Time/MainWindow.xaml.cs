@@ -290,7 +290,7 @@ namespace Track_Time
         private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             DateTime now = DateTime.Now;
-            string today = string.Format("{0}-{1}-{2}.csv", now.Year, now.Month, now.Day);
+            string today = string.Format("Time-{0:D4}-{1:D2}-{2:D2}.csv", now.Year, now.Month, now.Day);
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.FileName = today;
             sfd.ShowDialog();
