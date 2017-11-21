@@ -6,7 +6,7 @@
 namespace Track_Time
 {
     using System;
-	using System.IO;
+    using System.IO;
     using System.Runtime.InteropServices;
     using System.Text;
     using System.Windows;
@@ -80,10 +80,10 @@ namespace Track_Time
         /// </summary>
         public MainWindow()
         {
-			DateTime now = DateTime.Now;
-			string today = string.Format("Time-{0:D4}-{1:D2}-{2:D2}.csv", now.Year, now.Month, now.Day);
+            DateTime now = DateTime.Now;
+            string today = string.Format("Time-{0:D4}-{1:D2}-{2:D2}.csv", now.Year, now.Month, now.Day);
 
-			this.InitializeComponent();
+            this.InitializeComponent();
             this.windowChanged = new WinEventDelegate(this.WindowFocusChanged);
             IntPtr m_hhook = SetWinEventHook(
                 EVENT_SYSTEM_FOREGROUND,
@@ -93,19 +93,19 @@ namespace Track_Time
                 0,
                 0,
                 WINEVENT_OUTOFCONTEXT);
-			if (File.Exists(today))
-			{
-				MessageBoxResult answer = MessageBox.Show(
-					"There is a file for today's date.  Would you like to read it into the log?",
-					"Possible Log Entires",
-					MessageBoxButton.YesNo,
-					MessageBoxImage.Question,
-					MessageBoxResult.No);
-				if (answer == MessageBoxResult.Yes)
-				{
-					WindowLog.Text = File.ReadAllText(today);
-				}
-			}
+            if (File.Exists(today))
+            {
+                MessageBoxResult answer = MessageBox.Show(
+                    "There is a file for today's date.  Would you like to read it into the log?",
+                    "Possible Log Entires",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question,
+                    MessageBoxResult.No);
+                if (answer == MessageBoxResult.Yes)
+                {
+                    WindowLog.Text = File.ReadAllText(today);
+                }
+            }
 
             this.clock = new DispatcherTimer();
             this.clock.Interval = new TimeSpan(0, 0, (int)this.interval);
