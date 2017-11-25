@@ -118,6 +118,13 @@ namespace Track_Time
         /// <summary>
         /// Window event delegate.
         /// </summary>
+        /// <param name="hWinEventHook">The window event hook.</param>
+        /// <param name="eventType">The event type.</param>
+        /// <param name="hwnd">The window handle.</param>
+        /// <param name="idObject">The object ID.</param>
+        /// <param name="idChild">The child ID.</param>
+        /// <param name="dwEventThread">The event thread.</param>
+        /// <param name="dwmsEventTime">The event time.</param>
         private delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
 
         [DllImport("user32.dll")]
