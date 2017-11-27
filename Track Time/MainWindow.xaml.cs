@@ -16,7 +16,7 @@ namespace Track_Time
     using Microsoft.Win32;
 
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainWindow.XAML
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -358,11 +358,18 @@ namespace Track_Time
         }
 
         /// <summary>
-        /// Time of the last input event, as defined in User32.dll.
+        /// Time of the last input event, as defined in User32.DLL.
         /// </summary>
         internal struct LASTINPUTINFO
         {
+            /// <summary>
+            /// The size of the input.
+            /// </summary>
             public uint cbSize;
+
+            /// <summary>
+            /// The input time.
+            /// </summary>
             public uint dwTime;
         }
     }
