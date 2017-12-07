@@ -1,3 +1,8 @@
+﻿//-----------------------------------------------------------------------
+// <copyright file="App.xaml.cs" company="Colagioia Industries">
+//     Copyright (c) John Colagioia, available under the GPLv3.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace Track_Time
 {
     using System;
@@ -9,7 +14,7 @@ namespace Track_Time
     using System.Windows;
 
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// Interaction logic for App.XAML
     /// </summary>
     public partial class App : Application
     {
