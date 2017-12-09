@@ -20,7 +20,7 @@
             </Menu>
             <DockPanel x:Name="BottomDock" DockPanel.Dock="Bottom" LastChildFill="False">
                 <Label Content="Polling Interval" DockPanel.Dock="Left" />
-                <TextBox x:Name="textInterval" Text="0" DockPanel.Dock="Left" TextChanged="textInterval_TextChanged" VerticalAlignment="Center" />
+                <TextBox x:Name="textInterval" Text="0" DockPanel.Dock="Left" TextChanged="TextInterval_TextChanged" VerticalAlignment="Center" />
                 <Label Content="Changes Logged: " DockPanel.Dock="Left" />
                 <TextBlock x:Name="textLogLength" Text="0" DockPanel.Dock="Left" VerticalAlignment="Center" />
                 <ToggleButton x:Name="btnPause" DockPanel.Dock="Right" Content="Pause" Command="self:LocalCommands.Pause" IsEnabled="True" IsChecked="False" Margin="0,0,5,0" />

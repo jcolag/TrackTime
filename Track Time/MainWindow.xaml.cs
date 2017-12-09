@@ -147,7 +147,7 @@ namespace Track_Time
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The event arguments</param>
-        private void clock_Tick(object sender, EventArgs e)
+        private void Clock_Tick(object sender, EventArgs e)
         {
             string title = this.FindCurrentWindow();
             if (title == this.lastWindow)
@@ -216,7 +216,7 @@ namespace Track_Time
         /// <param name="dwmsEventTime">The event time (in milliseconds).</param>
         public void WindowFocusChanged(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
         {
-            this.clock_Tick(null, new EventArgs());
+            this.Clock_Tick(null, new EventArgs());
         }
 
         /// <summary>
@@ -253,7 +253,7 @@ namespace Track_Time
         {
             if (this.clock.IsEnabled)
             {
-                this.clock_Tick(sender, new EventArgs());
+                this.Clock_Tick(sender, new EventArgs());
                 this.clock.Stop();
                 this.lastWindow = "* Paused *";
                 System.Console.WriteLine("Pause");
@@ -280,7 +280,7 @@ namespace Track_Time
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The event arguments.</param>
-        private void textInterval_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextInterval_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox box = sender as TextBox;
             if (box == null)
