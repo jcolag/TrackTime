@@ -289,7 +289,7 @@ namespace Track_Time
             }
 
             string possibleInterval = box.Text;
-            Int16 newInterval = Int16.Parse(possibleInterval);
+            short newInterval = short.Parse(possibleInterval);
             if (newInterval > 0)
             {
                 this.clock.Interval = new TimeSpan(0, 0, newInterval);
