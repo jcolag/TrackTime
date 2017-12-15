@@ -109,7 +109,7 @@ namespace Track_Time
 
             this.clock = new DispatcherTimer();
             this.clock.Interval = new TimeSpan(0, 0, (int)this.interval);
-            this.clock.Tick += this.clock_Tick;
+            this.clock.Tick += this.Clock_Tick;
             this.clock.Start();
             this.since = DateTime.Now;
             textInterval.Text = this.interval.ToString();
