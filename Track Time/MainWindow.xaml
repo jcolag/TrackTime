@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:self="clr-namespace:Track_Time"
-        Title="Track Time">
+        Title="Track Time"
+        Closing="Window_Closing">
     <Window.CommandBindings>
         <CommandBinding Command="self:LocalCommands.Pause" Executed="Pause_Executed" CanExecute="Always_CanExecute" />
         <CommandBinding Command="self:LocalCommands.Clear" Executed="Clear_Executed" CanExecute="Always_CanExecute" />

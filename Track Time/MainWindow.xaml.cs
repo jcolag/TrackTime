@@ -143,6 +143,17 @@ namespace Track_Time
         private static extern UInt32 GetTickCount();
 
         /// <summary>
+        /// Handles the window closing.
+        /// </summary>
+        /// <returns>The closing.</returns>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">E.</param>
+        private void Window_Closing(object sender, EventArgs e)
+        {
+            this.Save_Executed (sender, new ExecutedRoutedEventArgs());
+        }
+
+        /// <summary>
         /// Event handler for clock ticks and related work.
         /// </summary>
         /// <param name="sender">The sender.</param>
