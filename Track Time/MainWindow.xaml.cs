@@ -150,7 +150,7 @@ namespace Track_Time
         /// <param name="e">E.</param>
         private void Window_Closing(object sender, EventArgs e)
         {
-            this.Save_Executed (sender, new ExecutedRoutedEventArgs());
+            LocalCommands.Save.Execute(null, null);
         }
 
         /// <summary>
